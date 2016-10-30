@@ -1,0 +1,15 @@
+version: '2'
+services:
+    nginx:
+        build: ./docker-build/nginx
+        ports:
+            - "80:80"
+        volumes:
+            - ./www:/var/www/
+        depends_on:
+            - phpfpm
+    phpfpm:
+        build: ./docker-build/phpfpm
+        volumes:
+            - ./www:/var/www/
+        working_dir: '/var/www/'
